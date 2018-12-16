@@ -25,6 +25,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": ""
+    "description": "React native basic app",
+    "githubUrl": "https://github.com/shubmittal/reactnative.git"
   }
 }

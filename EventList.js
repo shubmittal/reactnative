@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {FlatList, StyleSheet} from 'react-native'
+import ActionButton from 'react-native-action-button';
 import EventCard from './EventCard'
 
 const styles = StyleSheet.create({
@@ -14,7 +15,10 @@ class EventList extends Component {
     state = {
         events :[]
     }
-
+    static navigationOptions = {
+      title: 'Your Events',
+    };
+ 
     componentDidMount() {
         setInterval(() => {
             this.setState({
@@ -29,17 +33,19 @@ class EventList extends Component {
         
     }
    
-    render() { 
+    render() {
+      let {navigate} = this.props.navigation;
         return ( 
-           <FlatList 
+          [ 
+           <FlatList
+           key = "flatlist"
            data = {this.state.events}
            style = {styles.list}
            renderItem = {({item})=> <EventCard event ={item}/>}
            keyExtractor = {item => item.id}
-           />
-
-
-         );
+           />,
+<ActionButton key = "addEvent" title = "Add" onPress = {() => navigate("form")} buttonColor = "rgb(255,0,255)"/>
+          ]);
     }
 }
  
