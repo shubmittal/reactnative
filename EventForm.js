@@ -20,20 +20,20 @@ const styles = StyleSheet.create({
 
 class EventForm extends Component {
     state = { 
-        title : "popp"
+        title : ""
         
      }
     static navigationOptions = {
-        title: 'New Event',
+        title: 'New Event*',
       };
-      handleChangeTitle = ({text}) => this.setState({title: text})
-      handleAdd = () => console.log(this.state) //()=> navigate("list")
+      handleChangeTitle = (text) => {this.setState({title:text})}
+      handleAdd = () => console.log(`title : ${this.state.title}`) //()=> navigate("list")
     render() { 
         let {navigate} = this.props.navigation
         return (
             <View style = {{flex:1}}>
             <View style = {styles.fieldContainer}>
-            <TextInput placeholder = "Event Titele" spellCheck = {true} style = {styles.text} 
+            <TextInput placeholder = "Event Title" spellCheck = {true} style = {styles.text} 
             onChangeText = {this.handleChangeTitle }
             value = {this.state.title}
             ></TextInput>
