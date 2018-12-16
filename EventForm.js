@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {Text, View, TouchableNativeFeedback, TextInput, StyleSheet} from 'react-native'
+import {Text, View,TouchableHighlight, TextInput, StyleSheet} from 'react-native'
+import DateTimePicker from 'react-native-modal-datetime-picker'
+import {formatDateTime} from "./api"
 
 const styles = StyleSheet.create({
     fieldContainer:
@@ -15,19 +17,49 @@ const styles = StyleSheet.create({
             marginRight:7,
             paddingLeft:10
 
+        },
+        button:{
+            height: 50,
+            backgroundColor: "#48bbec",
+            borderColor: '#48bbec',
+            alignSelf: "stretch",
+            margin:10,
+            justifyContent: "center",
+            alignItems: 'center',
+            borderRadius : 5
+        },
+        buttonText : {
+            color : '#fff',
+            fontSize: 18
+        },
+        borderTop : {
+            borderColor: "#edeeef",
+            borderTopWidth: 5
         }
 })
 
 class EventForm extends Component {
     state = { 
-        title : ""
-        
+        title : "",
+        date : "",
+        isDateTimePickerVisible: false      
      }
+
+     _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+ 
+     _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+    
+     _handleDatePicked = dateString => {
+       let date = formatDateTime(dateString)
+       this.setState({date})
+       this._hideDateTimePicker();}
+   
+
     static navigationOptions = {
         title: 'New Event*',
       };
       handleChangeTitle = (text) => {this.setState({title:text})}
-      handleAdd = () => console.log(`title : ${this.state.title}`) //()=> navigate("list")
+      handleAdd = () => console.log(this.state) //()=> navigate("list")
     render() { 
         let {navigate} = this.props.navigation
         return (
@@ -37,10 +69,20 @@ class EventForm extends Component {
             onChangeText = {this.handleChangeTitle }
             value = {this.state.title}
             ></TextInput>
+            <DateTimePicker
+          isVisible={this.state.isDateTimePickerVisible}
+          mode = "datetime"
+          editable = {this.state.isDateTimePickerVisible}
+          onConfirm={this._handleDatePicked}
+          onCancel={this._hideDateTimePicker}
+        />
+        <TextInput 
+        value = {this.state.date}
+        style = {[styles.text, styles.borderTop]} onFocus = {this._showDateTimePicker} placeholder = "Choose a Date"></TextInput>
             </View>
-                <TouchableNativeFeedback onPress = {this.handleAdd}>
-                    <Text>Add</Text>
-                </TouchableNativeFeedback>
+                <TouchableHighlight onPress = {this.handleAdd} style = {styles.button}>
+                    <Text style = {styles.buttonText}>Add</Text>
+                </TouchableHighlight>
             </View>
           );
     }
