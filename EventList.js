@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {FlatList, StyleSheet} from 'react-native'
 import ActionButton from 'react-native-action-button';
+import {getEvents} from './api'
 import EventCard from './EventCard'
+
 
 const styles = StyleSheet.create({
     list: {
@@ -19,7 +21,7 @@ class EventList extends Component {
       title: 'Your Events',
     };
  
-    componentDidMount() {
+    componentDidMount = async ()=> {
         setInterval(() => {
             this.setState({
               events: this.state.events.map(evt => ({
@@ -28,8 +30,9 @@ class EventList extends Component {
               })),
             });
           }, 1000);
-        const events = require('./db.json').events.map(e=> ({...e, date: new Date(e.date)}));
-        this.setState({events})
+        getEvents()
+        .then(events => {console.log(events); this.setState({events})})
+     
         
     }
    

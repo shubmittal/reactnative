@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Text, View,TouchableHighlight, TextInput, StyleSheet} from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
-import {formatDateTime} from "./api"
+import {formatDateTime, saveEvent} from "./api"
+
 
 const styles = StyleSheet.create({
     fieldContainer:
@@ -49,8 +50,7 @@ class EventForm extends Component {
  
      _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
     
-     _handleDatePicked = dateString => {
-       let date = formatDateTime(dateString)
+     _handleDatePicked = date => {
        this.setState({date})
        this._hideDateTimePicker();}
    
@@ -59,9 +59,13 @@ class EventForm extends Component {
         title: 'New Event*',
       };
       handleChangeTitle = (text) => {this.setState({title:text})}
-      handleAdd = () => console.log(this.state) //()=> navigate("list")
+      handleAdd = () => { 
+        let {title, date}   = this.state;
+        alert(title, date)
+        saveEvent(title,date)
+        .then(()=>this.props.navigation.goBack() ) } 
     render() { 
-        let {navigate} = this.props.navigation
+       
         return (
             <View style = {{flex:1}}>
             <View style = {styles.fieldContainer}>
@@ -77,7 +81,7 @@ class EventForm extends Component {
           onCancel={this._hideDateTimePicker}
         />
         <TextInput 
-        value = {this.state.date}
+        value = {formatDateTime(this.state.date)}
         style = {[styles.text, styles.borderTop]} onFocus = {this._showDateTimePicker} placeholder = "Choose a Date"></TextInput>
             </View>
                 <TouchableHighlight onPress = {this.handleAdd} style = {styles.button}>

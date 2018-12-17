@@ -1,25 +1,39 @@
 {
-    "events": [
-      {
-        "title": "Demo a new app",
-        "date": "2020-03-29T13:45:18.000Z",
-        "id": "001c9b6d-00a9-465c-a2d3-afb7176a0a87"
-      },
-      {
-        "title": "Code a new app",
-        "date": "2019-12-29T13:45:18.000Z",
-        "id": "001c9b6d-00a9-465c-a2d3-afb7176a0a76"
-      },
-      {
-        "title": "test a new app",
-        "date": "2018-09-30T13:45:18.000Z",
-        "id": "001c9b6d-00a9-465c-a2d3-afb7176a0a93"
-      },
-      {
-        "title": "Deploy a new app",
-        "date": "2018-10-31T13:45:18.000Z",
-        "id": "001c9b6d-00a9-465c-a2d3-afb7176a0a89"
-      }
-
-    ]
-  }
+  "events": [
+    {
+      "title": "Demo a new app",
+      "date": "2020-03-29T13:45:18.000Z",
+      "id": "001c9b6d-00a9-465c-a2d3-afb7176a0a87"
+    },
+    {
+      "title": "Code a new app",
+      "date": "2019-12-29T13:45:18.000Z",
+      "id": "001c9b6d-00a9-465c-a2d3-afb7176a0a76"
+    },
+    {
+      "title": "test a new app",
+      "date": "2018-09-30T13:45:18.000Z",
+      "id": "001c9b6d-00a9-465c-a2d3-afb7176a0a93"
+    },
+    {
+      "title": "Deploy a new app",
+      "date": "2018-10-31T13:45:18.000Z",
+      "id": "001c9b6d-00a9-465c-a2d3-afb7176a0a89"
+    },
+    {
+      "title": "Diwali",
+      "date": "2018-12-07T00:34:00.000Z",
+      "id": "47d565ac-7b16-41aa-b380-526fd04807b8"
+    },
+    {
+      "title": "Join",
+      "date": "2018-12-29T15:35:00.000Z",
+      "id": "9ee844e6-f600-4462-aae5-8352de4569d2"
+    },
+    {
+      "title": "Join",
+      "date": "2018-12-29T15:35:00.000Z",
+      "id": "fb049c1d-b089-4ea4-929e-81c852a4f6e1"
+    }
+  ]
+}
